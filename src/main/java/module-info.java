@@ -10,6 +10,8 @@ module com.example.gui_player_fx {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
+    requires javafx.media;
 
     opens com.example.gui_player_fx to javafx.fxml;
     exports com.example.gui_player_fx;
