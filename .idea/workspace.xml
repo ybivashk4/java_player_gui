@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03e95cfd-b50e-4c82-8663-ee75a882a265" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/albom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/song.java" afterDir="false" />
+    <list default="true" id="03e95cfd-b50e-4c82-8663-ee75a882a265" name="Changes" comment="work with 1 album, without remove song">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/albom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/albom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gui_player_fx/song.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/gui_player_fx/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/gui_player_fx/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,24 +61,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.HelloApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/adminlinux/IdeaProjects/gui_player_fx/music",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/adminlinux/IdeaProjects/gui_player_fx/music&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/music" />
@@ -86,6 +86,7 @@
       <recent name="$PROJECT_DIR$/src/music" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/music" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -115,7 +116,12 @@
       <workItem from="1715149742355" duration="4847000" />
       <workItem from="1715167689902" duration="2902000" />
       <workItem from="1715170886849" duration="38000" />
-      <workItem from="1715182523247" duration="9641000" />
+      <workItem from="1715182523247" duration="19787000" />
+      <workItem from="1715227612634" duration="4804000" />
+      <workItem from="1715329645629" duration="59000" />
+      <workItem from="1715331139013" duration="136000" />
+      <workItem from="1715604274097" duration="1832000" />
+      <workItem from="1715588383248" duration="3160000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -141,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714955033505</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="work with 1 album, without remove song">
+      <option name="closed" value="true" />
+      <created>1715193910801</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715193910801</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +174,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="work with 1 album, without remove song" />
+    <option name="LAST_COMMIT_MESSAGE" value="work with 1 album, without remove song" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

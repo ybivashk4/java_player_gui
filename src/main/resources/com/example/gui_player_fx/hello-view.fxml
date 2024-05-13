@@ -16,16 +16,20 @@
     <Button onAction="#NextSongButton" text="Next!" />
     <Button onAction="#PrevSongButton" text="Prev!" />
    <ProgressBar prefWidth="200.0" progress="0.0" fx:id="myProgressBar"/>
-    <TextField fx:id="myTextField" text="Input name of file song" />
-    <Button onAction="#LoadSong" text="submit" />
+    <Label text="Input name of file song"/>
+    <TextField fx:id="songTextField"  />
+    <Button onAction="#LoadSong" text="submit" fx:id="loadSongButton"/>
+    <Label text="Input name of album to create"/>
+    <TextField fx:id="albomTextField"  />
+    <Button onAction="#saveAlbum" text="submit" />
    <ToolBar fx:id="songs_collection" prefHeight="40.0" prefWidth="200.0">
      <items>
-         <Label text="songs                                                                                               " />
+         <Label text="songs" />
      </items>
    </ToolBar>
     <ToolBar fx:id="albums_collection" prefHeight="40.0" prefWidth="200.0">
         <items>
-            <Label text="albums                                                                                               " />
+            <Label text="albums" />
         </items>
     </ToolBar>
 </VBox>

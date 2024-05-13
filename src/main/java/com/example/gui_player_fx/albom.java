@@ -1,4 +1,7 @@
 package com.example.gui_player_fx;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -14,9 +17,47 @@ public class albom {
         songs = new ArrayList<>();
         cur_song = 0;
     }
+    public void loadAlbum(TextField songTextField, Button loadSongButton) throws IOException {
+        String currentPath = "";
+        String name_of_directory = "/" + get_name() + "/";
+        try {
+            currentPath = new File(".").getCanonicalPath();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage() + ": error in " + e.getClass());
+        }
+        Path theDir = Paths.get(currentPath + "/music/" + name);
+        try {
+            Files.createDirectories(theDir);
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage() + ": error create directory in " + e.getClass());
+        }
+        songs.clear();
+        File[] listOfFiles = theDir.toFile().listFiles();
+        try {
+            for (File file : listOfFiles) {
+
+                if (file.isFile()) {
+                    songTextField.setText(file.getName());
+                    System.out.println(file.getName());
+                    loadSongButton.fire();
+                }
+            }
+        }
+        catch (NullPointerException e) {
+            System.out.println(e.getMessage() + ": error in " + e.getClass());
+        }
+    }
+    // надо бы сделать (load)
+    /*
+    public albom (String name_playlist, String Path) {
+        ;
+    }
+    */
     public song set_cur_song(int i) {
         cur_song = i;
-        if (i > songs.size()) {
+        if (i >= songs.size()) {
             System.out.println("Wrong num");
             return null;
         }
@@ -49,6 +90,7 @@ public class albom {
             songs.get(i).out();
         }
     }
+
     public void remove_song(int index) {
         index--;
         if (index >= 0 && index < songs.size() ) {
@@ -88,8 +130,9 @@ public class albom {
 
     }
     // didn't work
-    public void save_albom() {
+    public void save_albom() throws IOException{
         String currentPath = "";
+        String name_of_directory = "/" + get_name() + "/";
         try {
             currentPath = new File(".").getCanonicalPath();
         }
@@ -101,11 +144,11 @@ public class albom {
             Files.createDirectories(theDir);
         }
         catch (IOException e) {
-            System.out.println(e.getMessage() + ": error in " + e.getClass());
+            System.out.println(e.getMessage() + ": error create directory in " + e.getClass());
         }
 
         for (int i=0;i<songs.size();i++) {
-            songs.get(i).save_song("/music/" + name + "/\"" + songs.get(i).get_name() + "\".mp3");
+            songs.get(i).save_song(name_of_directory);
         }
     }
     public int get_count_songs() {

@@ -1,5 +1,6 @@
 package com.example.gui_player_fx;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -14,11 +15,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 public class song {
     private String name;
     private String artist;
     private String path;
-    // asd
+    // path - path from music e.g. path = name_of_album/name_of_song/, path = name_of_song
     public song (String path) throws IOException {
         String currentPath = new java.io.File(".").getCanonicalPath();
         File file = new File(currentPath + "/music/"+ path);
@@ -47,29 +50,18 @@ public class song {
     public void out() {
         System.out.println(name + " " + artist + " " + path);
     }
-    public void save_song(String path) {
-        String currentPath = "";
+
+    // copy song into /name_of_album/
+    public void save_song(String path) throws IOException {
+        System.out.println(path);
+        String currentPath = new java.io.File(".").getCanonicalPath();
+        Path targetFile = Paths.get(currentPath + "/music/" + this.path);
+        Path newFilePath = Paths.get(currentPath + "/music/" + path + "/" + this.path);
         try {
-            currentPath = new File(".").getCanonicalPath();
+            Files.copy(targetFile, newFilePath, REPLACE_EXISTING);
         }
         catch (IOException e) {
-            System.out.println(e.getMessage() + ": error in " + e.getClass());
-        }
-        File targetFile = new File(currentPath + path);
-        targetFile.delete();
-        Path newFilePath = Paths.get(currentPath + path);
-        try {
-            Files.createFile(newFilePath);
-        }
-        catch (IOException e) {
-            System.out.println("Wrong path: " + path + " in class" + this.getClass());
-        }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(currentPath + path))) {
-            writer.write(name + "\n");
-            writer.write(artist + "\n");
-        }
-        catch(IOException e) {
-            System.out.println(path + " not found" + this.getClass());
+            System.out.println("Wrong path: " + targetFile + ", " + newFilePath + " in class" + this.getClass());
         }
     }
 }
