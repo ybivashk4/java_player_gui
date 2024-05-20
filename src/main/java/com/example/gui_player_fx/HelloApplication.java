@@ -24,10 +24,3 @@ public class HelloApplication extends Application {
         launch();
     }
 }
-/*
-
-удаление песни
-удаление альбома
-отловить баги
-
- */

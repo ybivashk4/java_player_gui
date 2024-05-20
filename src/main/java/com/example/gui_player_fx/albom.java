@@ -110,7 +110,15 @@ public class albom {
             }
         }
     }
-
+    public void remove_song(song song_) {
+        for (int i=0;i<songs.size();i++) {
+            if (songs.get(i).equals(song_)) {
+                songs.remove(i);
+                if (cur_song == songs.size()) cur_song--;
+                break;
+            }
+        }
+    }
     public void add_song(String path, int index) throws IOException{
         if (index > songs.size()) index = songs.size();
         songs.add(index, new song(path));

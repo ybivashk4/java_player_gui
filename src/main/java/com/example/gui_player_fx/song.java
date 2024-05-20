@@ -64,4 +64,8 @@ public class song {
             System.out.println("Wrong path: " + targetFile + ", " + newFilePath + " in class" + this.getClass());
         }
     }
+    public boolean equals(song song) {
+        if (song == null) return false;
+        return name.equals(song.name) && artist.equals(song.artist);
+    }
 }

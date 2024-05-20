@@ -33,6 +33,8 @@ public class HelloController{
     private ProgressBar myProgressBar;
     @FXML
     protected Button loadSongButton;
+    @FXML
+    protected Button deleteSongButton;
 
     public HelloController() throws IOException {
         cur_album = new albom("all_songs");
@@ -125,9 +127,12 @@ public class HelloController{
         if (player_ != null) {
             var binding = Bindings.createDoubleBinding(
                     () -> {
-                        var currentTime = player_.getCurrentTime();
-                        var duration = player_.getMedia().getDuration();
-                        return currentTime.toMillis() / duration.toMillis();
+                        if (player_ != null) {
+                            var currentTime = player_.getCurrentTime();
+                            var duration = player_.getMedia().getDuration();
+                            return currentTime.toMillis() / duration.toMillis();
+                        }
+                        return new Double(0);
                     },
                     player_.currentTimeProperty(),
                     player_.getMedia().durationProperty());
@@ -146,6 +151,7 @@ public class HelloController{
         albums_collection.getItems().add(button);
         albom_name = albomTextField.getText();
         System.out.println(albom_name + " saved");
+        System.out.println(count_album + ", " + alboms.get_alboms().length);
         button.setOnAction(e -> {
 
             alboms.set_cur_albom(Integer.parseInt(button.getId()));
@@ -186,14 +192,96 @@ public class HelloController{
                         System.out.println("Error in " + getClass() + "\nError is " + ioe.getMessage());
                     }
                 });
+
                 bind_progress_bar();
             }
             try {
                 alboms.get_cur_albom().loadAlbum(songTextField, loadSongButton);
+                repair_song_buttons(cur_album);
             }
             catch (Exception except) {
                 System.out.println(except.getMessage());
             }
         });
+    }
+    @FXML
+    private void deleteSong() {
+        if (cur_album!= null && cur_album.get_cur_song() != null) {
+            if (player_ != null) {
+                player_.pause();
+                player_.stop();
+                media = null;
+                player_ = null;
+            }
+            for (Object button : songs_collection.getItems().toArray()) {
+                if (button instanceof Button && ((Button) button).getText().equals(cur_album.get_cur_song().get_name())) {
+                    songs_collection.getItems().remove((Button) button);
+                }
+            }
+            cur_album.remove_song(cur_album.get_cur_song());
+            repair_song_buttons(cur_album);
+            count_song--;
+            if (cur_album.get_cur_song() == null) return;
+            media = new Media("file://" + currentPath + "/music/" + albom_name +"/"+ cur_album.get_cur_song().get_path());
+            player_ = new MediaPlayer(media);
+        }
+    }
+
+    private void repair_song_buttons(albom cur_albom) {
+        if (cur_albom == null || songs_collection == null || songs_collection.getItems() == null) return;
+        int i = 0;
+        for (song song_ : cur_albom.get_songs()) {
+            for (Object button : songs_collection.getItems().toArray()) {
+                if (button instanceof Button && ((Button) button).getText().equals(song_.get_name())) {
+                    ((Button) button).setId(String.valueOf(i));
+                    break;
+                }
+            }
+            i++;
+        }
+    }
+    @FXML
+    private void deleteAlbum() {
+        if (alboms.get_cur_albom() != null && alboms.get_cur_albom().get_name() != "all_songs") {
+            if (player_ != null) {
+                player_.pause();
+                player_.stop();
+                media = null;
+                player_ = null;
+            }
+            songs_collection.getItems().removeAll(songs_collection.getItems());
+
+            for (Object button : albums_collection.getItems().toArray()) {
+                if (button instanceof Button && ((Button) button).getText().equals(alboms.get_cur_albom().get_name())) {
+                    albums_collection.getItems().remove((Button) button);
+                    break;
+                }
+            }
+            alboms.remove_albom(alboms.get_cur_albom().get_name());
+            alboms.set_cur_albom(0);
+
+            count_album--;
+            cur_album = alboms.get_cur_albom();
+            albom_name = "";
+            count_song = 0;
+            repair_album_buttons(alboms);
+        }
+    }
+    private void repair_album_buttons(player my_player) {
+        if (my_player == null || albums_collection == null || albums_collection.getItems() == null) return;
+        int i = 0;
+        for (albom album : my_player.get_alboms()) {
+            if (i == 0) {
+                i++;
+                continue;
+            }
+            for (Object button : albums_collection.getItems().toArray()) {
+                if (button instanceof Button && ((Button) button).getText().equals(album.get_name())) {
+                    ((Button) button).setId(String.valueOf(i));
+                    break;
+                }
+            }
+            i++;
+        }
     }
 }
